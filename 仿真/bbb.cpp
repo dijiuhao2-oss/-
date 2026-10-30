@@ -59,14 +59,13 @@ private:
         <<"\nPrivious Speed: "  << previous_speed 
         <<"\nSpeed Difference: " << speed_difference;
 
-
-        previous_speed = processed_speed;
-
         std::cout << "\nState: ";
         //线程执行
         std::thread worker(&b1::checkSpeedChange,this,processed_speed,previous_speed);
         //等待线程结束、回收资源
         worker.join();
+
+        previous_speed = processed_speed;
 
         history.push_back(speed_difference);//差值加入数组
 
